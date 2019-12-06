@@ -1,25 +1,26 @@
-name: Docker Image CI
+name: CI
 
 on: [push]
 
 jobs:
-
   build:
 
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v1
-    - name: 切换 action@v1
-     
-    - name: Docker Publish
-      uses: manusa/actions-publish-docker@v1.0.1
+    - name: 安装依赖
+      run: |
+        npm install
+        npx ng build
+    - name: 提交
+      run: |
+        cd ./public
+        git config --local user.email "350037310@qq.com"
+        git config --local user.name "ZQ-jhon"
+        git commit -m "Commit by github action" -a
+    - name: 推送
+      uses: ad-m/github-push-action@master
       with:
-        # Name of the Docker image
-        name: 350037310/ng-better
-        # Tag for the Docker image
-        tag: alpha
-        # Username for Docker registry
-        username: 350037310
-        # Password for Docker registry
-        password: ${{ secret.DOCKER_HUB_PASSWORD }}
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        force: true
