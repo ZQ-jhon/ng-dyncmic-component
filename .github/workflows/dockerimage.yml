@@ -15,7 +15,6 @@ jobs:
         npx ng build
     - name: 提交
       run: |
-        cd ./public
         git config --local user.email "350037310@qq.com"
         git config --local user.name "ZQ-jhon"
         git commit -m "Commit by github action" -a
