@@ -1,0 +1,25 @@
+name: Docker Image CI
+
+on: [push]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: 切换 action@v1
+     
+    - name: Docker Publish
+      uses: manusa/actions-publish-docker@v1.0.1
+      with:
+        # Name of the Docker image
+        name: 350037310/ng-better
+        # Tag for the Docker image
+        tag: alpha
+        # Username for Docker registry
+        username: 350037310
+        # Password for Docker registry
+        password: ${{ secret.DOCKER_HUB_PASSWORD }}
