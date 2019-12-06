@@ -17,6 +17,7 @@ jobs:
       run: |
         git config --local user.email "350037310@qq.com"
         git config --local user.name "ZQ-jhon"
+        git add .
         git commit -m "Commit by github action" -a
     - name: 推送
       uses: ad-m/github-push-action@master
